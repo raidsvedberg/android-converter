@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <style name="Theme.ConvApp" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#0D1B2A</item>
+        <item name="colorSecondary">#1B263B</item>
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+</resources>
