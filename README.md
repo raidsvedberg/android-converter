@@ -1,7 +1,5 @@
 # Unit Converter Android App
 
-# Android Converter App
-
 ## Overview
 
 This project is a modern Android application designed to convert measurements between the U.S. Customary System and the Metric System. The app supports a wide range of categories including length, area, weight, volume, and temperature. It was built with a focus on usability, accuracy, clean design, and real-time interaction, providing users with an intuitive and comfortable experience.
