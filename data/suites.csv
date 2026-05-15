@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3282","largeNumbers","","2026-05-15","passed","2026-05-15","","com.example.convapp.tests.EdgeCaseTests","com.example.convapp.tests.EdgeCaseTests",""
-"","4543","decimalInputMiToKm","","2026-05-15","passed","2026-05-15","","com.example.convapp.tests.EdgeCaseTests","com.example.convapp.tests.EdgeCaseTests",""
-"","5048","emptyInput","","2026-05-15","passed","2026-05-15","","com.example.convapp.tests.EdgeCaseTests","com.example.convapp.tests.EdgeCaseTests",""
+"","4623","decimalInputMiToKm","","2026-05-15","passed","2026-05-15","","com.example.convapp.tests.EdgeCaseTests","com.example.convapp.tests.EdgeCaseTests",""
+"","2936","largeNumbers","","2026-05-15","passed","2026-05-15","","com.example.convapp.tests.EdgeCaseTests","com.example.convapp.tests.EdgeCaseTests",""
+"","4627","emptyInput","","2026-05-15","passed","2026-05-15","","com.example.convapp.tests.EdgeCaseTests","com.example.convapp.tests.EdgeCaseTests",""
