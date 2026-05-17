@@ -2,6 +2,8 @@
 
 ## Automated Test Reports
 
+[![Android Tests](https://github.com/raidsvedberg/android-converter/actions/workflows/YOUR_FILE.yml/badge.svg)](https://github.com/raidsvedberg/android-converter/actions/workflows/YOUR_FILE.yml)
+
 - [Smoke Tests](https://raidsvedberg.github.io/android-converter/smoke/index.html)
 - [Functional Tests](https://raidsvedberg.github.io/android-converter/functional/index.html)
 - [Edge Case Tests](https://raidsvedberg.github.io/android-converter/edge/index.html)
