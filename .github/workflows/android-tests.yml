@@ -62,16 +62,12 @@ jobs:
             sleep 60            
             ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.convapp.tests.SmokeTests
 
-      - name: Verify Instrumentation Runner
-        run: |
-          ./gradlew app:properties | grep testInstrumentationRunner
-
-      - name: Debug Allure Files
-        if: always()
-        run: |
-          echo "===== SEARCHING ALLURE FILES ====="
-          find . -type d -name "allure-results"
-          find . -type f | grep allure || true
+#      - name: Debug Allure Files
+#        if: always()
+#        run: |
+#          echo "===== SEARCHING ALLURE FILES ====="
+#          find . -type d -name "allure-results"
+#          find . -type f | grep allure || true
 
       - name: Upload Smoke Reports
         if: always()
@@ -79,7 +75,9 @@ jobs:
         with:
           name: allure-results-smoke
           path: |
-            **/allure-results/**
+            app/build/reports/
+            app/build/outputs/androidTest-results/
+            app/build/outputs/connected_android_test_additional_output/
           if-no-files-found: error
 
       - name: Upload Smoke Screenshots
@@ -142,12 +140,12 @@ jobs:
             sleep 60            
             ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.convapp.tests.FunctionalTests
 
-      - name: Debug Allure Files
-        if: always()
-        run: |
-          echo "===== SEARCHING ALLURE FILES ====="
-          find . -type d -name "allure-results"
-          find . -type f | grep allure || true
+#      - name: Debug Allure Files
+#        if: always()
+#        run: |
+#          echo "===== SEARCHING ALLURE FILES ====="
+#          find . -type d -name "allure-results"
+#          find . -type f | grep allure || true
 
       - name: Upload Functional Reports
         if: always()
@@ -155,7 +153,9 @@ jobs:
         with:
           name: allure-results-functional
           path: |
-            **/allure-results/**
+            app/build/reports/
+            app/build/outputs/androidTest-results/
+            app/build/outputs/connected_android_test_additional_output/
           if-no-files-found: error
 
       - name: Upload Functional Screenshots
@@ -218,12 +218,12 @@ jobs:
             sleep 60
             ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.convapp.tests.EdgeCaseTests
 
-      - name: Debug Allure Files
-        if: always()
-        run: |
-          echo "===== SEARCHING ALLURE FILES ====="
-          find . -type d -name "allure-results"
-          find . -type f | grep allure || true
+#      - name: Debug Allure Files
+#        if: always()
+#        run: |
+#          echo "===== SEARCHING ALLURE FILES ====="
+#          find . -type d -name "allure-results"
+#          find . -type f | grep allure || true
 
       - name: Upload Edge Reports
         if: always()
@@ -231,7 +231,9 @@ jobs:
         with:
           name: allure-results-edge
           path: |
-            **/allure-results/**
+            app/build/reports/
+            app/build/outputs/androidTest-results/
+            app/build/outputs/connected_android_test_additional_output/
           if-no-files-found: error
 
       - name: Upload Edge Screenshots
