@@ -1,14 +1,17 @@
 package com.example.convapp.tests
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.convapp.base.BaseTest
 import com.example.convapp.pages.MainPage
 import com.example.convapp.utils.TestData
 import io.qameta.allure.kotlin.Epic
 import io.qameta.allure.kotlin.Feature
 import org.junit.Test
+import org.junit.runner.RunWith
 
 @Epic("Converter App")
 @Feature("Edge Case Tests")
+@RunWith(AndroidJUnit4::class)
 class EdgeCaseTests : BaseTest() {
 
     private val page = MainPage()

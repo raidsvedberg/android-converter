@@ -62,15 +62,20 @@ jobs:
             sleep 60            
             ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.convapp.tests.SmokeTests
 
+      - name: Debug Allure Files
+        if: always()
+        run: |
+          echo "===== SEARCHING ALLURE FILES ====="
+          find . -type d -name "allure-results"
+          find . -type f | grep allure || true
+
       - name: Upload Smoke Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-smoke
           path: |
-            app/build/reports/
-            app/build/outputs/androidTest-results/
-            app/build/outputs/connected_android_test_additional_output/
+            **/allure-results/**
           if-no-files-found: warn
 
       - name: Upload Smoke Screenshots
@@ -109,6 +114,9 @@ jobs:
           sudo apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
           sudo chmod 666 /dev/kvm
 
+      - name: Clear previous Allure results
+        run: rm -rf app/build/allure-results
+
       - name: Run Functional Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -130,15 +138,20 @@ jobs:
             sleep 60            
             ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.convapp.tests.FunctionalTests
 
+      - name: Debug Allure Files
+        if: always()
+        run: |
+          echo "===== SEARCHING ALLURE FILES ====="
+          find . -type d -name "allure-results"
+          find . -type f | grep allure || true
+
       - name: Upload Functional Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-functional
           path: |
-            app/build/reports/
-            app/build/outputs/androidTest-results/
-            app/build/outputs/connected_android_test_additional_output/
+            **/allure-results/**
           if-no-files-found: warn
 
       - name: Upload Functional Screenshots
@@ -177,6 +190,9 @@ jobs:
           sudo apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
           sudo chmod 666 /dev/kvm
 
+      - name: Clear previous Allure results
+        run: rm -rf app/build/allure-results
+
       - name: Run Edge Case Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -198,15 +214,20 @@ jobs:
             sleep 60
             ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.convapp.tests.EdgeCaseTests
 
+      - name: Debug Allure Files
+        if: always()
+        run: |
+          echo "===== SEARCHING ALLURE FILES ====="
+          find . -type d -name "allure-results"
+          find . -type f | grep allure || true
+
       - name: Upload Edge Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-edge
           path: |
-            app/build/reports/
-            app/build/outputs/androidTest-results/
-            app/build/outputs/connected_android_test_additional_output/
+            **/allure-results/**
           if-no-files-found: warn
 
       - name: Upload Edge Screenshots
@@ -240,19 +261,19 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: allure-results-smoke
-          path: allure-results/smoke
+          path: merged-results/smoke
 
       - name: Download Functional Results
         uses: actions/download-artifact@v4
         with:
           name: allure-results-functional
-          path: allure-results/functional
+          path: merged-results/functional
 
       - name: Download Edge Results
         uses: actions/download-artifact@v4
         with:
           name: allure-results-edge
-          path: allure-results/edge
+          path: merged-results/edge
 
       - name: Install Allure
         run: |
