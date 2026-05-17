@@ -23,8 +23,6 @@ android {
         base.archivesName.set("convApp")
 
         testInstrumentationRunner = "io.qameta.allure.android.runners.AllureAndroidJUnitRunner"
-        testInstrumentationRunnerArguments["listener"] =
-            "io.qameta.allure.android.listeners.AllureAndroidListener"
     }
 
     buildTypes {
