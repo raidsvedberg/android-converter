@@ -22,7 +22,7 @@ android {
         versionName = "1.0"
         base.archivesName.set("convApp")
 
-        testInstrumentationRunner = "io.qameta.allure.android.runners.AllureAndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -66,8 +66,4 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("io.qameta.allure:allure-kotlin-android:2.4.0")
-    androidTestImplementation("io.qameta.allure:allure-kotlin-model:2.4.0")
-    androidTestImplementation("io.qameta.allure:allure-kotlin-commons:2.4.0")
-    androidTestImplementation("io.qameta.allure:allure-kotlin-junit4:2.4.0")
 }
