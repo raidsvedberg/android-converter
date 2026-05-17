@@ -3,8 +3,12 @@ package com.example.convapp.tests
 import com.example.convapp.base.BaseTest
 import com.example.convapp.pages.MainPage
 import com.example.convapp.utils.TestData
+import io.qameta.allure.kotlin.Epic
+import io.qameta.allure.kotlin.Feature
 import org.junit.Test
 
+@Epic("Converter App")
+@Feature("Smoke Tests")
 class SmokeTests : BaseTest() {
 
     private val page = MainPage()

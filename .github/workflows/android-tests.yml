@@ -66,11 +66,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: smoke-test-reports
-          path: |
-            app/build/reports/
-            app/build/outputs/androidTest-results/
-            app/build/outputs/connected_android_test_additional_output/
+          name: allure-results-smoke
+          path: app/build/allure-results
 
       - name: Upload Smoke Screenshots
         if: failure()
@@ -133,11 +130,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: functional-test-reports
-          path: |
-            app/build/reports/
-            app/build/outputs/androidTest-results/
-            app/build/outputs/connected_android_test_additional_output/
+          name: allure-results-functional
+          path: app/build/allure-results
 
       - name: Upload Functional Screenshots
         if: failure()
@@ -200,11 +194,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: edge-test-reports
-          path: |
-            app/build/reports/
-            app/build/outputs/androidTest-results/
-            app/build/outputs/connected_android_test_additional_output/
+          name: allure-results-edge
+          path: app/build/allure-results
 
       - name: Upload Edge Screenshots
         if: failure()
@@ -227,10 +218,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download test artifacts
+      - name: Download Smoke Results
         uses: actions/download-artifact@v4
         with:
-          path: artifacts
+          name: allure-results-smoke
+          path: allure-results/smoke
+
+      - name: Download Functional Results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results-functional
+          path: allure-results/functional
+
+      - name: Download Edge Results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results-edge
+          path: allure-results/edge
+
+      - name: Merge Allure Results
+        run: |
+          mkdir merged-results
+          cp -r allure-results/smoke/* merged-results/ || true
+          cp -r allure-results/functional/* merged-results/ || true
+          cp -r allure-results/edge/* merged-results/ || true
+
+      - name: Generate Allure Report
+        run: allure generate merged-results --clean -o allure-report
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -244,12 +258,6 @@ jobs:
           tar -zxvf allure-${ALLURE_VERSION}.tgz
           sudo mv allure-${ALLURE_VERSION} /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
-
-      - name: Generate Allure Report
-        run: |
-          mkdir -p allure-results
-          find artifacts -type f -name "*.xml" -exec cp {} allure-results/ \;
-          allure generate allure-results --clean -o allure-report
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
