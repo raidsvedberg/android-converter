@@ -255,9 +255,9 @@ jobs:
           mkdir -p public/functional
           mkdir -p public/edge
 
-          cp -r reports/smoke/debug/* public/smoke/
-          cp -r reports/functional/debug/* public/functional/
-          cp -r reports/edge/debug/* public/edge/
+          cp -r reports/smoke/debug/. public/smoke/
+          cp -r reports/functional/debug/. public/functional/
+          cp -r reports/edge/debug/. public/edge/
 
       - name: Deploy Reports
         uses: peaceiris/actions-gh-pages@v4
