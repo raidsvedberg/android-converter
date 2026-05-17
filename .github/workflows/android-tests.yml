@@ -62,6 +62,10 @@ jobs:
             sleep 60            
             ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.convapp.tests.SmokeTests
 
+      - name: Verify Instrumentation Runner
+        run: |
+          ./gradlew app:properties | grep testInstrumentationRunner
+
       - name: Debug Allure Files
         if: always()
         run: |
@@ -76,7 +80,7 @@ jobs:
           name: allure-results-smoke
           path: |
             **/allure-results/**
-          if-no-files-found: warn
+          if-no-files-found: error
 
       - name: Upload Smoke Screenshots
         if: failure()
@@ -152,7 +156,7 @@ jobs:
           name: allure-results-functional
           path: |
             **/allure-results/**
-          if-no-files-found: warn
+          if-no-files-found: error
 
       - name: Upload Functional Screenshots
         if: failure()
@@ -228,7 +232,7 @@ jobs:
           name: allure-results-edge
           path: |
             **/allure-results/**
-          if-no-files-found: warn
+          if-no-files-found: error
 
       - name: Upload Edge Screenshots
         if: failure()
