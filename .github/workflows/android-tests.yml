@@ -230,6 +230,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
       - name: Download Smoke Results
         uses: actions/download-artifact@v4
         with:
@@ -248,6 +254,13 @@ jobs:
           name: allure-results-edge
           path: allure-results/edge
 
+      - name: Install Allure
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz
+          tar -zxvf allure-${ALLURE_VERSION}.tgz
+          sudo mv allure-${ALLURE_VERSION} /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+
       - name: Merge Allure Results
         run: |
           mkdir merged-results
@@ -257,19 +270,6 @@ jobs:
 
       - name: Generate Allure Report
         run: allure generate merged-results --clean -o allure-report
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - name: Install Allure
-        run: |
-          wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz
-          tar -zxvf allure-${ALLURE_VERSION}.tgz
-          sudo mv allure-${ALLURE_VERSION} /opt/allure
-          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
