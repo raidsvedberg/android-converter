@@ -252,7 +252,7 @@ jobs:
       - name: Prepare GitHub Pages
         run: |
           mkdir public
-          cp -r reports/* public/
+          cp -r reports/smoke/* public/
 
       - name: Deploy Reports
         uses: peaceiris/actions-gh-pages@v4
